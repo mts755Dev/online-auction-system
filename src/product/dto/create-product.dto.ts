@@ -1,14 +1,39 @@
-import { IsString, IsNotEmpty, IsNumber, IsArray } from 'class-validator';
+import {
+  IsArray,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  Min,
+} from 'class-validator';
+
+enum ProductStatus {
+  Live = 'live',
+  Sold = 'sold',
+  Delivered = 'delivered',
+}
 
 export class CreateProductDto {
-  @IsNotEmpty()
   @IsString()
+  @IsNotEmpty()
   name: string;
 
+  @IsString()
   @IsNotEmpty()
-  @IsNumber()
-  minimumBidAmount: number;
+  description: string;
 
   @IsArray()
   images: string[];
+
+  @IsNumber()
+  @Min(0)
+  minimumBid: number;
+
+  @IsEnum(ProductStatus)
+  @IsNotEmpty()
+  status: ProductStatus;
+
+  @IsString()
+  @IsNotEmpty()
+  sellerId: string;
 }

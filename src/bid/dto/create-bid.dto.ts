@@ -1,13 +1,15 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateBidDto {
+  @IsString()
   @IsNotEmpty()
-  bidderId: string;
+  userId: string;
 
+  @IsString()
   @IsNotEmpty()
-  auctionId: string;
+  productId: string;
 
-  @IsNotEmpty()
   @IsNumber()
-  bidAmount: number;
+  @IsNotEmpty()
+  amount: number;
 }
