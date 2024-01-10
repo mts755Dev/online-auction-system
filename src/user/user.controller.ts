@@ -11,6 +11,9 @@ import {
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { RoleGuard } from './role/role.guard';
+import { Roles } from './role/role.decorator';
+import { UserRole } from './schemas/user.schema';
 
 @UseGuards(JwtAuthGuard)
 @Controller('user')
@@ -28,11 +31,15 @@ export class UserController {
   }
 
   @Patch(':id')
+  @UseGuards(RoleGuard)
+  @Roles(UserRole.Admin)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
   }
 
   @Delete(':id')
+  @UseGuards(RoleGuard)
+  @Roles(UserRole.Admin)
   remove(@Param('id') id: string) {
     return this.userService.remove(id);
   }

@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, SchemaTypes, Types } from 'mongoose';
+import { Bid } from 'src/bid/schemas/bid.schema';
 import { User } from 'src/user/schemas/user.schema';
 
 @Schema()
@@ -18,6 +19,9 @@ export class Product extends Document {
 
   @Prop({ type: String, enum: ['live', 'sold', 'delivered'], default: 'live' })
   status: 'live' | 'sold' | 'delivered';
+
+  @Prop({ type: [{ type: SchemaTypes.ObjectId, ref: 'Bid' }] })
+  bids: Types.ObjectId[] | Bid[];
 
   @Prop({ type: SchemaTypes.ObjectId, ref: 'User', required: true })
   sellerId: Types.ObjectId | User;

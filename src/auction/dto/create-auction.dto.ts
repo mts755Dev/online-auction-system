@@ -7,10 +7,10 @@ import {
   Min,
 } from 'class-validator';
 
-enum AuctionStatus {
+export enum AuctionStatus {
   Pending = 'pending',
   Approved = 'approved',
-  Rejected = 'rejected',
+  Completed = 'completed',
 }
 
 export class CreateAuctionDto {

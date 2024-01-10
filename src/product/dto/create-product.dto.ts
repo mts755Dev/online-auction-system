@@ -32,8 +32,4 @@ export class CreateProductDto {
   @IsEnum(ProductStatus)
   @IsNotEmpty()
   status: ProductStatus;
-
-  @IsString()
-  @IsNotEmpty()
-  sellerId: string;
 }

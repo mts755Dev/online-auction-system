@@ -17,10 +17,10 @@ export class Auction extends Document {
 
   @Prop({
     type: String,
-    enum: ['pending', 'approved', 'rejected'],
+    enum: ['pending', 'approved', 'completed'],
     default: 'pending',
   })
-  status: 'pending' | 'approved' | 'rejected';
+  status: 'pending' | 'approved' | 'completed';
 }
 
 export const AuctionSchema = SchemaFactory.createForClass(Auction);

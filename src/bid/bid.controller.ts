@@ -1,23 +1,24 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
 import { BidService } from './bid.service';
 import { CreateBidDto } from './dto/create-bid.dto';
-import { UpdateBidDto } from './dto/update-bid.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { RoleGuard } from 'src/user/role/role.guard';
+import { UserRole } from 'src/user/schemas/user.schema';
+import { Roles } from 'src/user/role/role.decorator';
 
 @Controller('bid')
+@UseGuards(JwtAuthGuard)
 export class BidController {
   constructor(private readonly bidService: BidService) {}
 
-  @Post()
-  create(@Body() createBidDto: CreateBidDto) {
-    return this.bidService.create(createBidDto);
+  @Post(':productId')
+  @UseGuards(RoleGuard)
+  @Roles(UserRole.Buyer)
+  create(
+    @Param('productId') productId: string,
+    @Body() createBidDto: CreateBidDto,
+  ) {
+    return this.bidService.create({ ...createBidDto, productId });
   }
 
   @Get()
@@ -30,13 +31,8 @@ export class BidController {
     return this.bidService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBidDto: UpdateBidDto) {
-    return this.bidService.update(+id, updateBidDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.bidService.remove(+id);
+  @Get(':productId/highest-bid')
+  findHighestBidForProduct(@Param('productId') productId: string) {
+    return this.bidService.highestBid(productId);
   }
 }
