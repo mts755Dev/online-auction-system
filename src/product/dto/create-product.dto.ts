@@ -1,11 +1,4 @@
-import {
-  IsArray,
-  IsEnum,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  Min,
-} from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
 
 enum ProductStatus {
   Live = 'live',
@@ -22,8 +15,8 @@ export class CreateProductDto {
   @IsNotEmpty()
   description: string;
 
-  @IsArray()
-  images: string[];
+  @IsString()
+  images: string;
 
   @IsNumber()
   @Min(0)
