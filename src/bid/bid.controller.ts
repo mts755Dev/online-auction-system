@@ -3,8 +3,8 @@ import { BidService } from './bid.service';
 import { CreateBidDto } from './dto/create-bid.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RoleGuard } from 'src/user/role/role.guard';
-import { UserRole } from 'src/user/schemas/user.schema';
 import { Roles } from 'src/user/role/role.decorator';
+import { UserRole } from 'src/shared/constants/user-role.enum';
 
 @Controller('bid')
 @UseGuards(JwtAuthGuard)

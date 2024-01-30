@@ -8,7 +8,8 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Product } from './schemas/product.schema';
-import { User, UserRole } from 'src/user/schemas/user.schema';
+import { User } from 'src/user/schemas/user.schema';
+import { UserRole } from 'src/shared/constants/user-role.enum';
 
 @Injectable()
 export class ProductService {

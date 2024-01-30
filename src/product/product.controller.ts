@@ -14,7 +14,8 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RoleGuard } from 'src/user/role/role.guard';
 import { GetUser, Roles } from 'src/user/role/role.decorator';
-import { User, UserRole } from 'src/user/schemas/user.schema';
+import { User } from 'src/user/schemas/user.schema';
+import { UserRole } from 'src/shared/constants/user-role.enum';
 
 @Controller('product')
 @UseGuards(JwtAuthGuard)

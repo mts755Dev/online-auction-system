@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { AuctionStatus } from 'src/shared/constants/auction-status';
 
 @Schema()
 export class Auction extends Document {
@@ -17,10 +18,10 @@ export class Auction extends Document {
 
   @Prop({
     type: String,
-    enum: ['pending', 'approved', 'completed'],
-    default: 'pending',
+    enum: AuctionStatus,
+    default: AuctionStatus.Pending,
   })
-  status: 'pending' | 'approved' | 'completed';
+  status: AuctionStatus;
 }
 
 export const AuctionSchema = SchemaFactory.createForClass(Auction);

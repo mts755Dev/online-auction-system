@@ -1,11 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { AuctionStatus, CreateAuctionDto } from './dto/create-auction.dto';
+import { CreateAuctionDto } from './dto/create-auction.dto';
 import { UpdateAuctionDto } from './dto/update-auction.dto';
-import { User, UserRole } from 'src/user/schemas/user.schema';
+import { User } from 'src/user/schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Auction } from './schemas/auction.schema';
 import { Cron, CronExpression } from '@nestjs/schedule';
+import { AuctionStatus } from 'src/shared/constants/auction-status';
+import { UserRole } from 'src/shared/constants/user-role.enum';
 
 @Injectable()
 export class AuctionService {
@@ -17,7 +19,10 @@ export class AuctionService {
   async checkAndEndAuctions() {
     const currentTime = new Date();
     const auctionsToClose = await this.auctionModel
-      .find({ endDateTime: { $lte: currentTime }, status: 'approved' })
+      .find({
+        endDateTime: { $lte: currentTime },
+        status: AuctionStatus.Approved,
+      })
       .exec();
 
     auctionsToClose.forEach(async (auction) => {

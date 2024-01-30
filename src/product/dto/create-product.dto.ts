@@ -1,10 +1,5 @@
 import { IsEnum, IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
-
-enum ProductStatus {
-  Live = 'live',
-  Sold = 'sold',
-  Delivered = 'delivered',
-}
+import { ProductStatus } from 'src/shared/constants/product-status';
 
 export class CreateProductDto {
   @IsString()

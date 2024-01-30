@@ -13,7 +13,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RoleGuard } from './role/role.guard';
 import { Roles } from './role/role.decorator';
-import { UserRole } from './schemas/user.schema';
+import { UserRole } from 'src/shared/constants/user-role.enum';
 
 @UseGuards(JwtAuthGuard)
 @Controller('user')

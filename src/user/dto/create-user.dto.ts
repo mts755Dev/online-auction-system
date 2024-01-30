@@ -5,12 +5,7 @@ import {
   IsString,
   MinLength,
 } from 'class-validator';
-
-enum UserRole {
-  Admin = 'admin',
-  Seller = 'seller',
-  Buyer = 'buyer',
-}
+import { UserRole } from 'src/shared/constants/user-role.enum';
 
 export class CreateUserDto {
   @IsString()

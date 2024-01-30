@@ -6,12 +6,7 @@ import {
   IsString,
   Min,
 } from 'class-validator';
-
-export enum AuctionStatus {
-  Pending = 'pending',
-  Approved = 'approved',
-  Completed = 'completed',
-}
+import { AuctionStatus } from 'src/shared/constants/auction-status';
 
 export class CreateAuctionDto {
   @IsString()

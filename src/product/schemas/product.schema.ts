@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, SchemaTypes, Types } from 'mongoose';
 import { Bid } from 'src/bid/schemas/bid.schema';
+import { ProductStatus } from 'src/shared/constants/product-status';
 import { User } from 'src/user/schemas/user.schema';
 
 @Schema()
@@ -17,8 +18,8 @@ export class Product extends Document {
   @Prop({ required: true })
   minimumBid: number;
 
-  @Prop({ type: String, enum: ['live', 'sold', 'delivered'], default: 'live' })
-  status: 'live' | 'sold' | 'delivered';
+  @Prop({ type: String, enum: ProductStatus, default: ProductStatus.Live })
+  status: ProductStatus.Live;
 
   @Prop({ type: [{ type: SchemaTypes.ObjectId, ref: 'Bid' }] })
   bids: Types.ObjectId[] | Bid[];
