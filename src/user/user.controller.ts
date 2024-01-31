@@ -11,8 +11,8 @@ import {
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { RoleGuard } from './role/role.guard';
-import { Roles } from './role/role.decorator';
+import { RoleGuard } from '../shared/role/role.guard';
+import { Roles } from '../shared/role/role.decorator';
 import { UserRole } from 'src/shared/constants/user-role.enum';
 
 @UseGuards(JwtAuthGuard)

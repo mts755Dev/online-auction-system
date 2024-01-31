@@ -2,9 +2,9 @@ import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
 import { BidService } from './bid.service';
 import { CreateBidDto } from './dto/create-bid.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { RoleGuard } from 'src/user/role/role.guard';
-import { Roles } from 'src/user/role/role.decorator';
 import { UserRole } from 'src/shared/constants/user-role.enum';
+import { RoleGuard } from 'src/shared/role/role.guard';
+import { Roles } from 'src/shared/role/role.decorator';
 
 @Controller('bid')
 @UseGuards(JwtAuthGuard)

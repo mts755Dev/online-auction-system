@@ -12,10 +12,10 @@ import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { RoleGuard } from 'src/user/role/role.guard';
-import { GetUser, Roles } from 'src/user/role/role.decorator';
 import { User } from 'src/user/schemas/user.schema';
 import { UserRole } from 'src/shared/constants/user-role.enum';
+import { RoleGuard } from 'src/shared/role/role.guard';
+import { GetUser, Roles } from 'src/shared/role/role.decorator';
 
 @Controller('product')
 @UseGuards(JwtAuthGuard)
