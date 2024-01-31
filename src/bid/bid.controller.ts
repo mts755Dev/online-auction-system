@@ -13,7 +13,7 @@ export class BidController {
 
   @Post(':productId')
   @UseGuards(RoleGuard)
-  @Roles(UserRole.Buyer)
+  @Roles(UserRole.BUYER)
   create(
     @Param('productId') productId: string,
     @Body() createBidDto: CreateBidDto,

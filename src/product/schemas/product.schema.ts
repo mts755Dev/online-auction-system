@@ -18,8 +18,8 @@ export class Product extends Document {
   @Prop({ required: true })
   minimumBid: number;
 
-  @Prop({ type: String, enum: ProductStatus, default: ProductStatus.Live })
-  status: ProductStatus.Live;
+  @Prop({ type: String, enum: ProductStatus, default: ProductStatus.LIVE })
+  status: ProductStatus.LIVE;
 
   @Prop({ type: [{ type: SchemaTypes.ObjectId, ref: 'Bid' }] })
   bids: Types.ObjectId[] | Bid[];

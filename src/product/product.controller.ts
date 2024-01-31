@@ -24,7 +24,7 @@ export class ProductController {
 
   @Post()
   @UseGuards(RoleGuard)
-  @Roles(UserRole.Seller)
+  @Roles(UserRole.SELLER)
   create(@Body() createProductDto: CreateProductDto, @GetUser() user: User) {
     return this.productService.create(createProductDto, user);
   }
@@ -36,7 +36,7 @@ export class ProductController {
 
   @Get(':id/bids')
   @UseGuards(RoleGuard)
-  @Roles(UserRole.Seller)
+  @Roles(UserRole.SELLER)
   findBidsForProduct(@Param('id') id: string) {
     return this.productService.findBidsForProduct(id);
   }
@@ -48,7 +48,7 @@ export class ProductController {
 
   @Patch(':id')
   @UseGuards(RoleGuard)
-  @Roles(UserRole.Seller)
+  @Roles(UserRole.SELLER)
   update(
     @Param('id') id: string,
     @Body() updateProductDto: UpdateProductDto,
@@ -59,7 +59,7 @@ export class ProductController {
 
   @Delete(':id')
   @UseGuards(RoleGuard)
-  @Roles(UserRole.Admin, UserRole.Seller)
+  @Roles(UserRole.ADMIN, UserRole.SELLER)
   remove(@Param('id') id: string, @GetUser() user: User) {
     return this.productService.remove(id, user);
   }

@@ -24,7 +24,7 @@ export class AuctionController {
 
   @Post()
   @UseGuards(RoleGuard)
-  @Roles(UserRole.Admin, UserRole.Seller)
+  @Roles(UserRole.ADMIN, UserRole.SELLER)
   create(@Body() createAuctionDto: CreateAuctionDto, @GetUser() user: User) {
     return this.auctionService.create(createAuctionDto, user);
   }
@@ -41,21 +41,21 @@ export class AuctionController {
 
   @Patch(':id')
   @UseGuards(RoleGuard)
-  @Roles(UserRole.Admin)
+  @Roles(UserRole.ADMIN)
   update(@Param('id') id: string, @Body() updateAuctionDto: UpdateAuctionDto) {
     return this.auctionService.update(id, updateAuctionDto);
   }
 
   @Delete(':id')
   @UseGuards(RoleGuard)
-  @Roles(UserRole.Admin)
+  @Roles(UserRole.ADMIN)
   remove(@Param('id') id: string) {
     return this.auctionService.remove(id);
   }
 
   @Patch(':id/approve')
   @UseGuards(RoleGuard)
-  @Roles(UserRole.Admin)
+  @Roles(UserRole.ADMIN)
   approveAuction(@Param('id') id: string) {
     return this.auctionService.approveAuction(id);
   }

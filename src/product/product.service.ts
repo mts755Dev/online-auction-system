@@ -56,7 +56,7 @@ export class ProductService {
     if (!productToUpdate) {
       throw new NotFoundException(`Product with ID ${id} not found`);
     }
-    if (user.role === UserRole.Seller && user.id === productToUpdate.sellerId) {
+    if (user.role === UserRole.SELLER && user.id === productToUpdate.sellerId) {
       const updatedProduct = await this.productModel
         .findByIdAndUpdate(id, updateProductDto, { new: true })
         .exec();
@@ -74,8 +74,8 @@ export class ProductService {
       throw new NotFoundException(`Product with ID ${id} not found`);
     }
     if (
-      user.role === UserRole.Admin ||
-      (user.role === UserRole.Seller && user.id === productToDelete.sellerId)
+      user.role === UserRole.ADMIN ||
+      (user.role === UserRole.SELLER && user.id === productToDelete.sellerId)
     ) {
       const deletedProduct = await this.productModel
         .findByIdAndDelete(id)

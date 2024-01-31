@@ -21,21 +21,21 @@ export class AuctionService {
     const auctionsToClose = await this.auctionModel
       .find({
         endDateTime: { $lte: currentTime },
-        status: AuctionStatus.Approved,
+        status: AuctionStatus.APPROVED,
       })
       .exec();
 
     auctionsToClose.forEach(async (auction) => {
-      auction.status = AuctionStatus.Completed;
+      auction.status = AuctionStatus.COMPLETED;
       await auction.save();
     });
   }
 
   async create(createAuctionDto: CreateAuctionDto, user: User) {
     const status =
-      user.role === UserRole.Admin
-        ? AuctionStatus.Approved
-        : AuctionStatus.Pending;
+      user.role === UserRole.ADMIN
+        ? AuctionStatus.APPROVED
+        : AuctionStatus.PENDING;
 
     const createdAuction = new this.auctionModel({
       ...createAuctionDto,
@@ -83,7 +83,7 @@ export class AuctionService {
       throw new NotFoundException(`Auction with ID ${id} not found`);
     }
 
-    auctionToUpdate.status = AuctionStatus.Approved;
+    auctionToUpdate.status = AuctionStatus.APPROVED;
     return await auctionToUpdate.save();
   }
 }

@@ -19,7 +19,7 @@ export class Auction extends Document {
   @Prop({
     type: String,
     enum: AuctionStatus,
-    default: AuctionStatus.Pending,
+    default: AuctionStatus.PENDING,
   })
   status: AuctionStatus;
 }

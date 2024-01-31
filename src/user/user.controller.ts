@@ -32,14 +32,14 @@ export class UserController {
 
   @Patch(':id')
   @UseGuards(RoleGuard)
-  @Roles(UserRole.Admin)
+  @Roles(UserRole.ADMIN)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
   }
 
   @Delete(':id')
   @UseGuards(RoleGuard)
-  @Roles(UserRole.Admin)
+  @Roles(UserRole.ADMIN)
   remove(@Param('id') id: string) {
     return this.userService.remove(id);
   }
