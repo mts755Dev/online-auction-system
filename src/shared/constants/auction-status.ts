@@ -1,5 +1,5 @@
 export enum AuctionStatus {
-  Pending = 'pending',
-  Approved = 'approved',
-  Completed = 'completed',
+  PENDING = 'pending',
+  APPROVED = 'approved',
+  COMPLETED = 'completed',
 }
